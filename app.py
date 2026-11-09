@@ -113,7 +113,6 @@ def main():
         st.subheader("1. Datos en terreno")
         placa = st.text_input("Placa del vehículo", placeholder="Ej: ABC123").strip().upper()
         marca_runt = st.selectbox("Marca registrada en el RUNT (según la consulta)", ctx["marcas"] + [OTRA_MARCA])
-        linea_runt = st.text_input("Línea y año en el RUNT (opcional, solo informativo)", placeholder="Ej: Aveo 2011")
 
         modo = st.radio("Cargar fotografía por:", ("Subir imagen", "Tomar foto con la cámara"))
         if modo == "Subir imagen":
@@ -146,7 +145,7 @@ def main():
             with st.spinner("Analizando la imagen…"):
                 top3, ms = analizar(img, ctx)
 
-            st.markdown(f"**Placa:** `{placa}`  ·  **RUNT:** {marca_runt}" + (f" {linea_runt}" if linea_runt.strip() else ""))
+            st.markdown(f"**Placa:** `{placa}`  ·  **RUNT:** {marca_runt}")
             st.markdown("### Lo que ve el modelo (3 primeras opciones)")
             for i, (nombre, p) in enumerate(top3, 1):
                 st.write(f"**{i}. {nombre}** — {p:.1%}")
